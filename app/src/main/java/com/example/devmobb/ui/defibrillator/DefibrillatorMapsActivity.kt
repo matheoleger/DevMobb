@@ -71,7 +71,7 @@ class DefibrillatorMapsActivity : AppCompatActivity(), OnMapReadyCallback {
                         mMap.addMarker(MarkerOptions()
                             .position(defibrillatorLocation)
                             .title(defibrillatorSt.address + " "+defibrillator.showDetails())
-                            .icon(BitmapFromVector(this, R.drawable.ic_baseline_pedal_bike_24))
+                            .icon(BitmapFromVector(this, R.drawable.ic_baseline_monitor_heart_24))
                         )
 
                     } else {

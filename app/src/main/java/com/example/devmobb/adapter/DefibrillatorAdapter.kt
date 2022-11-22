@@ -23,7 +23,6 @@ class DefibrillatorAdapter(private val defibrillators:List<Defibrillator>, priva
         val cardView : CardView = itemView.findViewById(R.id.cardView)
         var name : TextView = itemView.findViewById(R.id.name)
         val address : TextView = itemView.findViewById(R.id.address)
-        val status : ImageView = itemView.findViewById(R.id.status)
         val openingTimes : TextView = itemView.findViewById(R.id.openingTimes)
         val distance : TextView = itemView.findViewById(R.id.distance)
     }
@@ -33,13 +32,17 @@ class DefibrillatorAdapter(private val defibrillators:List<Defibrillator>, priva
         return ViewHolder(view)
     }
 
-    // Pour chaque view_id on met a jour les composants de la view (cardView: CardView, name:TextView)
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val defibrillator = defibrillators[position]
         holder.name.text = defibrillator.designation
         holder.address.text = defibrillator.address
-        holder.openingTimes.text = "🕒${defibrillator.openingDays} ${defibrillator.openingTime} - ${defibrillator.closingTime}"
+
+        if(defibrillator.openingDays == null || defibrillator.openingTime == null || defibrillator.closingTime == null) {
+            holder.openingTimes.text = "\uD83D\uDD52Horaires inconnus..."
+        } else {
+            holder.openingTimes.text = "🕒${defibrillator.openingDays} | ${defibrillator.openingTime} - ${defibrillator.closingTime}"
+        }
 
         if(currentLocation != null) {
             holder.distance.text = "${String.format("%.1f", currentLocation!!.distanceTo(defibrillator!!.toLocation())/1000)}KM"
@@ -47,25 +50,14 @@ class DefibrillatorAdapter(private val defibrillators:List<Defibrillator>, priva
             holder.distance.text = "- KM"
         }
 
-        /*if("OPEN" == defibrillator.status) {
-            holder.status.setImageResource(R.drawable.ic_baseline_radio_button_checked_24)
-        } else {
-            holder.status.setImageResource(R.drawable.ic_baseline_radio_button_unchecked_24)
-        }*/
-
-        /*if(station.availableBikes != null && 0 == station.availableBikes.toInt()) {
-            holder.name.setTextColor(context.getColor(R.color.empty_bike))
-        }*/
-
         holder.cardView.setOnClickListener {
             val intent = Intent(context, DefibrillatorMapsActivity::class.java)
-            intent.putExtra("station", defibrillator.designation)
+            intent.putExtra("defibrillator", defibrillator.designation)
             defibrillatorSelected = defibrillator
             context.startActivity(intent)
         }
     }
 
-    // On retourne le nombre d'élements dans la liste des stations
     override fun getItemCount(): Int {
         return defibrillators.size
     }
