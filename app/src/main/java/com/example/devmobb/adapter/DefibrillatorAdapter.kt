@@ -13,7 +13,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.devmobb.R
 import com.example.devmobb.ui.defibrillator.DefibrillatorMapsActivity
-//import com.example.devmobb.ui.defibrillator.DefibrillatorDetailActivity
+import com.example.devmobb.ui.defibrillator.DefibrillatorDetailActivity
 import currentLocation
 import defibrillatorSelected
 

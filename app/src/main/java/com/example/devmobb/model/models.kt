@@ -54,6 +54,6 @@ data class Defibrillator (
     }
 
     fun showDetails(): CharSequence? {
-        return "${openingTime} 📣${closingTime} ✅${openingDays}"
+        return "${openingDays} | ${openingTime} - ${closingTime}"
     }
 }

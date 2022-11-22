@@ -45,9 +45,6 @@ class DefibrillatorMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-
-        //fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        //fetchLocation()
     }
 
     /**
@@ -71,6 +68,7 @@ class DefibrillatorMapsActivity : AppCompatActivity(), OnMapReadyCallback {
                         mMap.addMarker(MarkerOptions()
                             .position(defibrillatorLocation)
                             .title(defibrillatorSt.address + " "+defibrillator.showDetails())
+                            .title("Hello")
                             .icon(BitmapFromVector(this, R.drawable.ic_baseline_monitor_heart_24))
                         )
 
@@ -93,8 +91,6 @@ class DefibrillatorMapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
             val defibrillatorLocation = LatLng(defibrillator.latitude, defibrillator.longitude)
-            //mMap.addMarker(MarkerOptions().position(locationStation).title(station.name))
-            //mMap.moveCamera(CameraUpdateFactory.newLatLng(locationStation))
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(defibrillatorLocation, 18f))
         }
 

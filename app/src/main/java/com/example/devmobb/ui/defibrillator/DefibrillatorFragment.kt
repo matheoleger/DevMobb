@@ -39,8 +39,6 @@ class DefibrillatorFragment : Fragment() {
         val progressBarSation = binding.progressBarSation
 
         homeViewModel.defibrillators.observe(viewLifecycleOwner) {
-            //val adapter : StationAdapter(it)
-            //val adapter : StationAdapter(it.requireContext())
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.adapter = DefibrillatorAdapter(it, requireContext())
             progressBarSation.visibility = View.GONE
