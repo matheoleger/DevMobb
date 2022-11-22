@@ -29,3 +29,31 @@ data class Station (
         return "🚲${availableBikes} 📣${availableBikes} ✅${bikeStands}"
     }
 }
+
+var defibrillatorSelected:Defibrillator? = null
+var allDefibrillators:List<Defibrillator>? = null
+
+@Serializable
+data class Defibrillator (
+    val id: Long,
+    val recordId: String,
+    val designation: String,
+    val position: String,
+    val latitude: Double,
+    val longitude: Double,
+    val openingTime: String,
+    val closingTime: String,
+    val openingDays: String,
+    val address: String,
+) {
+    fun toLocation(): Location {
+        val location = Location("")
+        location.latitude = latitude
+        location.longitude = longitude
+        return location
+    }
+
+    fun showDetails(): CharSequence? {
+        return "${openingTime} 📣${closingTime} ✅${openingDays}"
+    }
+}

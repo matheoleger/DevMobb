@@ -13,8 +13,8 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.devmobb.ui.dashboard.DashboardFragment"
-        android:label="@string/title_pump"
+        android:name="com.example.devmobb.ui.defibrillator.DefibrillatorFragment"
+        android:label="@string/title_defibrillator"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment

@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">DevMobb</string>
     <string name="title_bike">Bike</string>
-    <string name="title_pump">Pump</string>
+    <string name="title_defibrillator">Defibrillator</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_detail_station">DetailStationActivity</string>
+    <string name="title_activity_detail_defibrillator">DetailDefibrillatorActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -14,4 +15,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="button_open_map">OPEN</string>
     <string name="title_activity_station_maps">StationMapsActivity</string>
+    <string name="title_activity_defibrillator_maps">DefibrillatorMapsActivity</string>
+
 </resources>

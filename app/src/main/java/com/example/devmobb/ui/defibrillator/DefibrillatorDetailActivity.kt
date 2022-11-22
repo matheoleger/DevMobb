@@ -1,4 +1,4 @@
-package com.example.devmobb.ui.station
+package com.example.devmobb.ui.defibrillator
 
 import android.content.Intent
 import android.net.Uri
@@ -7,25 +7,25 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import com.example.devmobb.R
-import stationSelected
+import defibrillatorSelected
 
-class StationDetailActivity : AppCompatActivity() {
+class DefibrillatorDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_station_detail)
-        val station = intent.getStringExtra("station")
-        val stationName = findViewById<TextView>(R.id.defibrillatorDesignation)
+        setContentView(R.layout.activity_defibrillator_detail)
+        val defibrillator = intent.getStringExtra("defibrillator")
+        val defibrillatorDesignation = findViewById<TextView>(R.id.defibrillatorDesignation)
         val buttonOpen = findViewById<Button>(R.id.buttonOpenMap)
 
-        stationName.text = station
+        defibrillatorDesignation.text = defibrillator
 
-        stationSelected?.let {station ->
-            stationName.text = station.name
+        defibrillatorSelected?.let {defibrillator ->
+            defibrillatorDesignation.text = defibrillator.designation
 
             buttonOpen.setOnClickListener {
                 // Display a label at the location of Google's Sydney office
                 val gmmIntentUri =
-                    Uri.parse("geo:0,0?q=${station.lattitude},${station.longitude}(${station.name})")
+                    Uri.parse("geo:0,0?q=${defibrillator.latitude},${defibrillator.longitude}(${defibrillator.designation})")
                 val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
                 mapIntent.setPackage("com.google.android.apps.maps")
                 startActivity(mapIntent)

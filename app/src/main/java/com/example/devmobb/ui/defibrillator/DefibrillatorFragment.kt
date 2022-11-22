@@ -1,6 +1,6 @@
-package com.example.devmobb.ui.home
+package com.example.devmobb.ui.defibrillator
 
-import allStations
+import allDefibrillators
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,14 +9,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.devmobb.adapter.StationAdapter
-import com.example.devmobb.api.StationApi
+import com.example.devmobb.adapter.DefibrillatorAdapter
+import com.example.devmobb.api.DefibrillatorApi
 import com.example.devmobb.api.RetrofitHelper
 import com.example.devmobb.databinding.FragmentHomeBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class HomeFragment : Fragment() {
+class DefibrillatorFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this).get(DefibrillatorViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -38,26 +38,21 @@ class HomeFragment : Fragment() {
         val recyclerView = binding.recyclerView
         val progressBarSation = binding.progressBarSation
 
-        /* val stations  = listOf("station 1", "station 2")
-        val adapter = StationAdapter(stations, requireContext())
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = adapter */
-
-        homeViewModel.stations.observe(viewLifecycleOwner) {
+        homeViewModel.defibrillators.observe(viewLifecycleOwner) {
             //val adapter : StationAdapter(it)
             //val adapter : StationAdapter(it.requireContext())
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            recyclerView.adapter = StationAdapter(it, requireContext())
+            recyclerView.adapter = DefibrillatorAdapter(it, requireContext())
             progressBarSation.visibility = View.GONE
 
-            allStations = it
+            allDefibrillators = it
         }
 
-        val stationApi = RetrofitHelper().getInstance().create(StationApi::class.java)
+        val defibrillatorApi = RetrofitHelper().getInstance().create(DefibrillatorApi::class.java)
         GlobalScope.launch {
-            val result = stationApi.getStations()
+            val result = defibrillatorApi.getDefibrillators()
             Log.d("HOME", result.body().toString())
-            homeViewModel.stations.postValue(result.body())
+            homeViewModel.defibrillators.postValue(result.body())
         }
 
         return root

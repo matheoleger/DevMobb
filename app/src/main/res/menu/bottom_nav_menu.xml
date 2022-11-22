@@ -8,8 +8,8 @@
 
     <item
         android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_baseline_local_gas_station_24"
-        android:title="@string/title_pump" />
+        android:icon="@drawable/ic_baseline_monitor_heart_24"
+        android:title="@string/title_defibrillator" />
 
     <item
         android:id="@+id/navigation_notifications"
